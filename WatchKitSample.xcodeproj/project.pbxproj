@@ -83,6 +83,7 @@
 		F287088F20FB37D100992415 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F287089120FB37D100992415 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F287089220FB37D100992415 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		F2D44C9B210F65DD0091ACB3 /* WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +150,7 @@
 		F287088820FB37D000992415 /* WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F2D44C9B210F65DD0091ACB3 /* WatchKit Extension.entitlements */,
 				F287088920FB37D000992415 /* InterfaceController.swift */,
 				F287088B20FB37D000992415 /* ExtensionDelegate.swift */,
 				F287088D20FB37D000992415 /* NotificationController.swift */,
@@ -233,6 +235,14 @@
 					};
 					F287088320FB37D000992415 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -503,6 +513,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WatchKit Extension/WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D2R737286R;
 				INFOPLIST_FILE = "WatchKit Extension/Info.plist";
@@ -525,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WatchKit Extension/WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D2R737286R;
 				INFOPLIST_FILE = "WatchKit Extension/Info.plist";

@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
-
+import UserNotifications
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var session = WCSession.default
@@ -22,6 +22,24 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             count = countValue
             DispatchQueue.main.async {
                 self.counter.setText(countValue.description)
+                
+                let content = UNMutableNotificationContent()
+                content.title = "countUp"
+                content.body = countValue.description
+                content.sound = UNNotificationSound.default()
+                content.userInfo = ["customData": "fizzbuzz"]
+                content.categoryIdentifier = "alarm"
+                
+                let time = Date().timeIntervalSinceNow - 20.0
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let request = UNNotificationRequest(identifier: self.stringWithUUID(), content: content, trigger: trigger)
+                
+                let center = UNUserNotificationCenter.current()
+                
+                center.removeAllPendingNotificationRequests()
+                center.removeAllDeliveredNotifications()
+                
+                center.add(request)
             }
         }
     }
@@ -69,6 +87,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    
+    func stringWithUUID() -> String {
+        let uuidObj = CFUUIDCreate(nil)
+        let uuidString = CFUUIDCreateString(nil, uuidObj)!
+        return uuidString as String
     }
 
 }
