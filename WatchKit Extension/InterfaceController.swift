@@ -30,7 +30,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 content.userInfo = ["customData": "fizzbuzz"]
                 content.categoryIdentifier = "alarm"
                 
-                let time = Date().timeIntervalSinceNow - 20.0
+                //let time = Date().timeIntervalSinceNow - 20.0
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
                 let request = UNNotificationRequest(identifier: self.stringWithUUID(), content: content, trigger: trigger)
                 

@@ -8,6 +8,7 @@
 
 import UIKit
 import WatchConnectivity
+import UserNotifications
 
 
 class ViewController: UIViewController, WCSessionDelegate {
@@ -42,6 +43,25 @@ class ViewController: UIViewController, WCSessionDelegate {
             countFromWatch = countValue
             DispatchQueue.main.async {
                 self.countLabel.text = String(self.countFromWatch)
+                
+                let content = UNMutableNotificationContent()
+                content.title = "countUp"
+                content.body = String(self.countFromWatch)
+                content.sound = UNNotificationSound.default()
+                //content.userInfo = ["customData": "fizzbuzz"]
+                //content.categoryIdentifier = "alarm"
+                //content.badge = 1
+                
+                //let time = Date().timeIntervalSinceNow - 20.0
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let request = UNNotificationRequest(identifier: "sample", content: content, trigger: trigger)
+                
+                let center = UNUserNotificationCenter.current()
+                
+//                center.removeAllPendingNotificationRequests()
+//                center.removeAllDeliveredNotifications()
+//
+                center.add(request)
             }
         }
     }
